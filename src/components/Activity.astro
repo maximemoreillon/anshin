@@ -1,11 +1,12 @@
 ---
-// TODO: more than an hour ago
+import YAML from "yaml"
+import * as fs from "fs"
 
-const { ACTIVITY_URL } = import.meta.env
+const file = fs.readFileSync("config/loki.yml", "utf8")
+const { url } = YAML.parse(file)
 
 const start = (Date.now() - 6.048e8) * 1e6 // A week ago
-const url = `${ACTIVITY_URL}&start=${start}&limit=5`
-const response = await fetch(url)
+const response = await fetch(`${url}&start=${start}&limit=5`)
 const {
   data: { result },
 } = await response.json()

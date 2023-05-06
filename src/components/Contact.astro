@@ -1,5 +1,7 @@
 ---
-const { name, email, phone } = Astro.props
+const {
+  contact: { name, email, phone, relation },
+} = Astro.props
 ---
 
 <li class="link-card">
@@ -7,6 +9,9 @@ const { name, email, phone } = Astro.props
     <h2>
       {name}
     </h2>
+    <p>
+      Relation: {relation}
+    </p>
     <p>
       E-mail: {email}
     </p>

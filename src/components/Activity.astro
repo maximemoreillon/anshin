@@ -1,0 +1,38 @@
+---
+// TODO: more than an hour ago
+
+const url = import.meta.env.ACTIVITY_URL
+const response = await fetch(url)
+const {
+  data: { result },
+} = await response.json()
+
+let entries: any[] = []
+if (result.length) {
+  entries = result[0].values.map(([ts, message]: any) => ({
+    timestamp: new Date(ts / 1000000).toLocaleString(),
+    message,
+  }))
+}
+---
+
+<h2>Recent activity</h2>
+
+<ul role="list">
+  {
+    entries.slice(0, 5).map(({ timestamp, message }: any) => (
+      <li>
+        {timestamp}: {message}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>

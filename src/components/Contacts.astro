@@ -1,0 +1,32 @@
+---
+import YAML from "yaml"
+import * as fs from "fs"
+import Contact from "./Contact.astro"
+
+interface Contact {
+  name: string
+  email: string
+  phone: string
+}
+
+const file = fs.readFileSync("config/contacts.yml", "utf8")
+const contacts = YAML.parse(file)
+---
+
+<h2>Emergency contacts</h2>
+<ul role="list" class="card-grid">
+  {
+    contacts.map(({ name, email, phone }: Contact) => (
+      <Contact name={name} email={email} phone={phone} />
+    ))
+  }
+</ul>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>

@@ -1,7 +1,10 @@
 ---
 // TODO: more than an hour ago
 
-const url = import.meta.env.ACTIVITY_URL
+const { ACTIVITY_URL } = import.meta.env
+
+const start = (Date.now() - 6.048e8) * 1e6 // A week ago
+const url = `${ACTIVITY_URL}&start=${start}&limit=5`
 const response = await fetch(url)
 const {
   data: { result },
@@ -20,7 +23,7 @@ if (result.length) {
 
 <ul role="list">
   {
-    entries.slice(0, 5).map(({ timestamp, message }: any) => (
+    entries.map(({ timestamp, message }: any) => (
       <li>
         {timestamp}: {message}
       </li>

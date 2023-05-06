@@ -14,7 +14,7 @@ const {
 let entries: any[] = []
 if (result.length) {
   entries = result[0].values.map(([ts, message]: any) => ({
-    timestamp: new Date(ts / 1000000).toLocaleString(),
+    timestamp: new Date(ts / 1000000).toLocaleString("ja-JP"),
     message,
   }))
 }

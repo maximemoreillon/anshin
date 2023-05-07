@@ -1,0 +1,26 @@
+---
+const {
+  entry: { timestamp, message },
+} = Astro.props
+
+const time = new Date(timestamp / 1000000).toLocaleString("ja-JP")
+---
+
+<div class="activity-entry">
+  <div class="time">
+    {time}
+  </div>
+  <div class="message">
+    {message}
+  </div>
+</div>
+
+<style>
+  .activity-entry {
+    display: flex;
+  }
+
+  .time {
+    flex-basis: 15ch;
+  }
+</style>

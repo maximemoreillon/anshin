@@ -15,15 +15,14 @@ const contacts = YAML.parse(file)
 ---
 
 <h2>Emergency contacts</h2>
-<ul role="list" class="card-grid">
+<div role="list" class="card-wrapper">
   {contacts.map((contact: Contact) => <Contact contact={contact} />)}
-</ul>
+</div>
 
 <style>
-  .card-grid {
+  .card-wrapper {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    padding: 0;
   }
 </style>

@@ -14,6 +14,7 @@ interface Division {
   name: Intl.RelativeTimeFormatUnit
 }
 
+// Taken from https://blog.webdevsimplified.com/2020-07/relative-time-format/
 const DIVISIONS: Division[] = [
   { amount: 60, name: "seconds" },
   { amount: 60, name: "minutes" },
@@ -37,21 +38,11 @@ function formatTimeAgo(date: number) {
 }
 ---
 
-<div class="activity-entry">
-  <div class="time">
+<div class="">
+  <div class="text-gray-500 text-sm">
     {formatTimeAgo(timestamp)}
   </div>
-  <div class="message">
+  <div class="">
     {message}
   </div>
 </div>
-
-<style>
-  .activity-entry {
-    display: flex;
-  }
-
-  .time {
-    flex-basis: 15ch;
-  }
-</style>

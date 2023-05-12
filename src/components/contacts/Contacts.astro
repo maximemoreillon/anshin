@@ -14,15 +14,7 @@ const file = fs.readFileSync("config/contacts.yml", "utf8")
 const contacts = YAML.parse(file)
 ---
 
-<h2>Emergency contacts</h2>
-<div role="list" class="card-wrapper">
+<h2 class="text-2xl my-4 font-bold">Emergency contacts</h2>
+<ul role="list" class="flex flex-col gap-4">
   {contacts.map((contact: Contact) => <Contact contact={contact} />)}
-</div>
-
-<style>
-  .card-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-</style>
+</ul>

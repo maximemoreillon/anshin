@@ -2,7 +2,7 @@
 import YAML from "yaml"
 import * as fs from "fs"
 import ActivityEntry from "./ActivityEntry.astro"
-
+import Card from "../Card.astro"
 const file = fs.readFileSync("config/loki.yml", "utf8")
 const { url } = YAML.parse(file)
 
@@ -20,31 +20,9 @@ const entries = result.length
   : []
 ---
 
-<h2>Recent activity</h2>
-
-<div role="list" class="events-wrapper card">
-  {entries.map((entry: any) => <ActivityEntry entry={entry} />)}
-</div>
-
-<style>
-  .events-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25em;
-  }
-
-  .card {
-    padding: 0.25rem;
-    background-color: white;
-    line-height: 1.4;
-    padding: 1rem 1.3rem;
-    border-radius: 0.35rem;
-    color: #111;
-    background-color: white;
-
-    border-radius: 0.6rem;
-
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  }
-</style>
+<h2 class="text-2xl my-4 font-bold">Recent activity</h2>
+<Card>
+  <ul role="list" class="flex flex-col gap-2">
+    {entries.map((entry: any) => <ActivityEntry entry={entry} />)}
+  </ul>
+</Card>

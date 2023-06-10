@@ -1,20 +1,17 @@
 ---
 import YAML from "yaml"
 import * as fs from "fs"
-import Contact from "./Contact.astro"
-
-interface Contact {
-  name: string
-  email: string
-  phone: string
-  relation: string
-}
-
-const file = fs.readFileSync("config/contacts.yml", "utf8")
-const contacts = YAML.parse(file)
+import Card from "../Card.astro"
+const contacts = await Astro.glob("../../contacts/*.md")
 ---
 
 <h2 class="text-2xl my-4 font-bold">Emergency contacts</h2>
 <ul role="list" class="flex flex-col gap-4">
-  {contacts.map((contact: Contact) => <Contact contact={contact} />)}
+  {
+    contacts.map((contact) => (
+      <Card>
+        <contact.Content class="contact" />
+      </Card>
+    ))
+  }
 </ul>

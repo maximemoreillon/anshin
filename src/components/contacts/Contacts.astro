@@ -1,7 +1,7 @@
 ---
 import YAML from "yaml"
 import * as fs from "fs"
-import Card from "../Card.astro"
+import Contact from "./Contact.astro"
 const contacts = await Astro.glob("../../contacts/*.md")
 ---
 
@@ -9,9 +9,15 @@ const contacts = await Astro.glob("../../contacts/*.md")
 <ul role="list" class="flex flex-col gap-4">
   {
     contacts.map((contact) => (
-      <Card>
-        <contact.Content class="contact" />
-      </Card>
+      <Contact title={contact.frontmatter.title}>
+        <contact.Content />
+      </Contact>
     ))
   }
 </ul>
+
+<style is:global>
+  .contact {
+    outline: 1px solid red;
+  }
+</style>

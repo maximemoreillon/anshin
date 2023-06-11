@@ -1,3 +1,5 @@
-# John Doe
+---
+title: "John Doe"
+---
 
 Relation: My boss
